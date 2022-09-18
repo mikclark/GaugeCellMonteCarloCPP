@@ -37,6 +37,13 @@ void PotentialByAtomTypes::updateParametersByAtomTypes(int type1, int type2, dou
     energyParams[type2][type1] = newEnergyParam;
 };
 
+double PotentialByAtomTypes::getSizeParameter(int type1, int type2) {
+    return sizeSquaredParams[type1][type2];
+}
+double PotentialByAtomTypes::getEnergyParameter(int type1, int type2) {
+    return sizeSquaredParams[type1][type2];
+}
+
 std::string PotentialByAtomTypes::toString() {
     std::stringstream ss;
     ss.precision(5);

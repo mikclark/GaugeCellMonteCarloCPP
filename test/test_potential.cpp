@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <iostream>
 
-int main(){
+void test_potential(){
     LennardJones lj;
     std::cout << "Empty LennardJones:" << std::endl << lj.toString() << std::endl;
 

@@ -9,6 +9,8 @@ class PotentialByAtomTypes {
 
     void addParametersByAtomTypes(int type1, int type2, double newSzeParam, double newEnergyParam);
     void updateParametersByAtomTypes(int type1, int type2, double newSizeParam, double newEnergyParam);
+    double getSizeParameter(int type1, int type2);
+    double getEnergyParameter(int type1, int type2);
 
     std::string toString();
 
