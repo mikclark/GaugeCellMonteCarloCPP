@@ -4,7 +4,13 @@
 
 State::State(double boxLength) : boxLength(boxLength), x(), y(), z(), t(), n_atoms(0) {};
 State::State(const State & state) : boxLength(state.boxLength), x(state.x), y(state.y), z(state.y), t(state.t), n_atoms(state.n_atoms) {};
-State::State(double boxLength, const std::vector<double> & xx, const std::vector<double> & yy, const std::vector<double> & zz, const std::vector<int> & tt) : boxLength(boxLength), x(), y(), z(), t() {
+State::State(double boxLength,
+             const std::vector<double> & xx,
+             const std::vector<double> & yy,
+             const std::vector<double> & zz,
+             const std::vector<int> & tt
+) : boxLength(boxLength), x(), y(), z(), t()
+{
     int input_n_atoms = xx.size();
     if(yy.size() != input_n_atoms || zz.size() != input_n_atoms || tt.size() != input_n_atoms){
         throw std::runtime_error("All input vectors to State() must be the same size");
@@ -49,20 +55,20 @@ std::string State::toString() {
     return ss.str();
 };
 
-void State::fillRandom(std::initializer_list<int> nn) {
+void State::fillRandom(std::initializer_list<int> countOfEachType) {
     std::mt19937_64 rng(time(nullptr));
-    this->fillRandom(rng, nn);
+    this->fillRandom(rng, countOfEachType);
 }
-void State::fillRandom(std::mt19937_64 & rng, std::initializer_list<int> nn) {
+void State::fillRandom(std::mt19937_64 & rng, std::initializer_list<int> countOfEachType) {
     const double convert_to_length = boxLength/rng.max();
-    int i_type = -1;
-    for(auto ni : nn) {
-        i_type++;
-        for(int i = 0; i < ni; i++){
+    int this_type = -1;
+    for(auto nOfThisType : countOfEachType) {
+        this_type++;
+        for(int i = 0; i < nOfThisType; i++){
             this->add( (rng() - 0.5) * convert_to_length,
                       (rng() - 0.5) * convert_to_length,
                       (rng() - 0.5) * convert_to_length,
-                      i_type );
+                      this_type );
         }
     }
     n_atoms = x.size();

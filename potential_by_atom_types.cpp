@@ -11,7 +11,7 @@ void PotentialByAtomTypes::addParametersByAtomTypes(int type1, int type2, double
     int newSize = std::max(type1,type2) + 1;
     for(int ii = 0; ii < sizeSquaredParams.size(); ii++){
         // Add new columns to existing rows
-        if(sizeSquaredParams[ii].size() < newSize){
+        if(newSize > sizeSquaredParams[ii].size()){
             sizeSquaredParams[ii].resize(newSize);
             energyParams[ii].resize(newSize);
         }
@@ -38,9 +38,11 @@ void PotentialByAtomTypes::updateParametersByAtomTypes(int type1, int type2, dou
 };
 
 double PotentialByAtomTypes::getSizeParameter(int type1, int type2) {
+    if(type1 < 0 || type2 < 0 || type1 >= sizeSquaredParams.size() || type2 >= sizeSquaredParams.size()) throw;
     return sizeSquaredParams[type1][type2];
 }
 double PotentialByAtomTypes::getEnergyParameter(int type1, int type2) {
+    if(type1 < 0 || type2 < 0 || type1 >= sizeSquaredParams.size() || type2 >= sizeSquaredParams.size()) throw;
     return sizeSquaredParams[type1][type2];
 }
 

@@ -15,8 +15,8 @@ public:
     void add(double x, double y, double z, int t);
     void remove(int i);
     std::string toString();
-    void fillRandom(std::initializer_list<int> nn);
-    void fillRandom(std::mt19937_64 & rng, std::initializer_list<int> nn);
+    void fillRandom(std::initializer_list<int> countOfEachType);
+    void fillRandom(std::mt19937_64 & rng, std::initializer_list<int> countOfEachType);
 
     double boxLength;
     int n_atoms;
